@@ -87,6 +87,8 @@ class MaterialListCard extends StatelessWidget {
   final String imgUrl;
   ServiceProvider serviceProvider;
 
+  final con = Get.put(ItemController());
+
   @override
   Widget build(BuildContext context) {
     final c = Get.put(ServiceProviderController());
@@ -95,8 +97,8 @@ class MaterialListCard extends StatelessWidget {
       padding: const EdgeInsets.only(left: 19, right: 19, top: 20),
       child: InkWell(
         onTap: () {
+          con.getAllCatgegory(serviceProvider.id ?? 0);
           c.selectedServiceProvider.value = serviceProvider;
-          ItemController().getAllCatgegory(serviceProvider.id ?? 0);
           Get.to(() => ItemAddScreen(serviceProvider: serviceProvider));
         },
         child: Container(

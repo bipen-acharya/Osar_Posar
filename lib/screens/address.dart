@@ -81,38 +81,7 @@ class _AddressPageState extends State<AddressPage> {
           key: keys,
           child: Column(
             children: [
-              // TextField(
-              //   readOnly: true,
-              //   // controller: controller,
-              //   onTap: () => c.chooseDate(context, c.selectedDate),
-              //   decoration: InputDecoration(
-              //     contentPadding: const EdgeInsets.all(14),
-              //     hintText: "Select date",
-              //     hintStyle: const TextStyle(
-              //       fontSize: 15,
-              //       fontWeight: FontWeight.w400,
-              //     ),
-              //     suffixIcon: const Icon(Icons.calendar_month),
-              //     border: InputBorder.none,
-              //     enabledBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //       borderSide: const BorderSide(
-              //         width: 1,
-              //       ),
-              //     ),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //       borderSide: const BorderSide(
-              //         width: 1,
-              //       ),
-              //     ),
-              //     disabledBorder: OutlineInputBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //       borderSide: const BorderSide(
-              //         width: 1,
-              //       ),
-              //     ),
-              //   ),
+             
               const SizedBox(
                 height: 20,
               ),

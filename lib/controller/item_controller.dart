@@ -15,7 +15,9 @@ class ItemController extends GetxController {
   RxBool loading = false.obs;
   String name = "";
   final selectedItem = Items().obs;
-  getAllCatgegory(int id) async {
+
+
+  void getAllCatgegory(int id) async {
     Get.put(ItemController());
     final categoryContoller = Get.find<ItemController>();
 
