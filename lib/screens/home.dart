@@ -177,7 +177,7 @@ class HomePage extends StatelessWidget {
                   HomeCard(
                     text: "Requests",
                     iconData: Icons.history,
-                    onTap: (() => Get.to(() => const RequestScreen())),
+                    onTap: (() => Get.to(() =>  RequestScreen())),
                     // onTap: () {},
                   ),
                   HomeCard(

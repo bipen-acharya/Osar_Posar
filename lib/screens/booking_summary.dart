@@ -171,7 +171,7 @@ class BookingSummary extends StatelessWidget {
               colorText: Colors.white,
             );
 
-            Get.offAll(() => const RequestScreen());
+            Get.offAll(() =>  RequestScreen());
           },
           child: const Text("Send Request"),
         ),

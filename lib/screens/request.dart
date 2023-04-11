@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:osar_pasar/controller/order_request_controller.dart';
+import 'package:osar_pasar/models/order_request.dart';
 import 'package:osar_pasar/screens/home.dart';
 import 'package:osar_pasar/utils/colors.dart';
 import 'package:osar_pasar/utils/image_path.dart';
 
 class RequestScreen extends StatelessWidget {
-  const RequestScreen({super.key});
+  RequestScreen({super.key});
 
+  final c = Get.put(OrderRequestController());
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(Get.context!).textTheme;
@@ -40,9 +43,10 @@ class RequestScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           child: ListView.builder(
-            itemCount: 1,
+            itemCount: c.orderRequestList.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
+              OrderRequest orderRequest = c.orderRequestList[index];
               return Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,8 +62,8 @@ class RequestScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Text(
-                          "Today",
+                        Text(
+                          orderRequest.status ?? "",
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         ),
                         const SizedBox(
