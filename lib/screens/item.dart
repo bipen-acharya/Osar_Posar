@@ -24,6 +24,7 @@ class ItemAddScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
+            c.selectedItems.clear();
             Get.back();
           },
           child: const Padding(
