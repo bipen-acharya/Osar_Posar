@@ -23,7 +23,7 @@ class AddressController extends GetxController {
   }
 
   Future<List<NepalProvince>> get() async {
-    var url = Uri.parse(Api.provinces);
+    var url = Uri.parse(OsarPasarAPI.provinces);
     var response = await http.get(url);
     List<NepalProvince> provinces = [];
     if (response.statusCode == 200) {

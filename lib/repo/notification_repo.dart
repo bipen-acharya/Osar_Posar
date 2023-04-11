@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:osar_pasar/models/notification.dart';
+import 'package:osar_pasar/utils/apis.dart';
 
 import '../utils/storage_helper.dart';
 
@@ -12,8 +13,7 @@ class NotificationRepo {
       {required Function(List<NotificationServiceprovider>) onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse("http://192.168.1.71:8000/api/notifications/list");
-
+      var url = Uri.parse(OsarPasarAPI.notificationList);
       http.Response response = await http.get(
         url,
         headers: {

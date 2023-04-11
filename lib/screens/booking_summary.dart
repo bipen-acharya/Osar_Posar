@@ -10,6 +10,7 @@ import 'package:osar_pasar/models/service_provider.dart';
 import 'package:osar_pasar/screens/notification_page.dart';
 import 'package:osar_pasar/screens/request.dart';
 import 'package:http/http.dart' as http;
+import 'package:osar_pasar/utils/apis.dart';
 import 'package:osar_pasar/utils/storage_helper.dart';
 import 'package:osar_pasar/widgets/custom_text_field.dart';
 import 'package:osar_pasar/widgets/home_card.dart';
@@ -185,7 +186,7 @@ class BookingSummary extends StatelessWidget {
       required Function() onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse("http://192.168.1.71:8000/api/orders/store");
+      var url = Uri.parse(OsarPasarAPI.bookingSummary);
 
       var body = json.encode(test);
 

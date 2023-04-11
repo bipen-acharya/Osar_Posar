@@ -9,7 +9,7 @@ class ServiceProviderRepo {
       {required Function(List<ServiceProvider>) onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse(Api.serviceProvider);
+      var url = Uri.parse(OsarPasarAPI.serviceProvider);
 
       http.Response response = await http.get(
         url,

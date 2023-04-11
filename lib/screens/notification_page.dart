@@ -118,6 +118,7 @@ class NotificationsList extends StatelessWidget {
     },
   ];
 
+   NotificationsList({super.key});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

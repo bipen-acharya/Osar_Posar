@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:osar_pasar/controller/item_controller.dart';
 import 'package:osar_pasar/models/service_provider.dart';
 import 'package:osar_pasar/screens/address.dart';

@@ -31,10 +31,12 @@ class PaymentRepo {
 
       log(body.toString());
 
-      http.Response response = await http.post(Uri.parse(Api.paymentCheckURL),
-          headers: headers, body: body);
+      http.Response response = await http.post(
+          Uri.parse(OsarPasarAPI.paymentCheckURL),
+          headers: headers,
+          body: body);
 
-      log("${Api.paymentCheckURL} =========> ");
+      log("${OsarPasarAPI.paymentCheckURL} =========> ");
       log("res${response.body.toString()}");
       dynamic data = json.decode(response.body);
 
