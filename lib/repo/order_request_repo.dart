@@ -12,7 +12,7 @@ class OrderRequestrepo {
       {required Function(List<OrderRequest>) onSuccess,
       required Function(String message) onError}) async {
     try {
-      var url = Uri.parse(OsarPasarAPI.notificationList);
+      var url = Uri.parse(OsarPasarAPI.orderRequest);
       http.Response response = await http.get(
         url,
         headers: {
@@ -25,6 +25,8 @@ class OrderRequestrepo {
       print(data);
       if (data['success']) {
         log("on sucess ma aayo");
+        print(orderRequestListFromJson(data['data']));
+        log("on sucess ma aayo123");
         onSuccess(orderRequestListFromJson(data['data']));
         // print(data.toString());
       } else {

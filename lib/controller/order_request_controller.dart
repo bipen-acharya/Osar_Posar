@@ -18,7 +18,7 @@ class OrderRequestController extends GetxController {
     await OrderRequestrepo.getAllOrderRequest(
       onSuccess: (orders) {
         loading.value = false;
-        log("controlling orders  ");
+        log("controlling orders ");
         orderRequestList.addAll(orders);
       },
       onError: ((message) {

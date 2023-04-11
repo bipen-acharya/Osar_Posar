@@ -40,60 +40,69 @@ class RequestScreen extends StatelessWidget {
         ),
         centerTitle: false,
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          child: ListView.builder(
-            itemCount: c.orderRequestList.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              OrderRequest orderRequest = c.orderRequestList[index];
-              return Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        width: 0.5, color: Color.fromARGB(255, 222, 222, 222)),
-                  ),
-                ),
-                // padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          orderRequest.status ?? "",
-                          style: TextStyle(color: Colors.black, fontSize: 12),
+      body: Obx(
+        () => (c.loading.value)
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: SizedBox(
+                  child: ListView.builder(
+                    itemCount: c.orderRequestList.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      OrderRequest orderRequest = c.orderRequestList[index];
+                      return Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                                width: 0.5,
+                                color: Color.fromARGB(255, 222, 222, 222)),
+                          ),
                         ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Service Provider’s Name",
-                              style: TextStyle(
-                                  color: Colors.black45, fontSize: 14),
+                        // padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                // Text(
+                                //   orderRequest.status ?? "",
+                                //   style: TextStyle(
+                                //       color: Colors.black, fontSize: 12),
+                                // ),
+                                // const SizedBox(
+                                //   width: 20,
+                                // ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      orderRequest.serviceProvider!.name ?? "",
+                                      style: TextStyle(
+                                          color: Colors.black45, fontSize: 14),
+                                    ),
+                                    Text(
+                                      orderRequest.status ?? "",
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromARGB(204, 255, 128, 0),
+                                          fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                            Text(
-                              "PENDING",
-                              style: TextStyle(
-                                  color: Color.fromARGB(204, 255, 128, 0),
-                                  fontSize: 12),
-                            ),
+                            SvgPicture.asset(AllImages.waiting),
                           ],
                         ),
-                      ],
-                    ),
-                    SvgPicture.asset(AllImages.waiting),
-                  ],
+                      );
+                    },
+                  ),
                 ),
-              );
-            },
-          ),
-        ),
+              ),
       ),
     );
   }

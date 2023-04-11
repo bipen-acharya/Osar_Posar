@@ -8,4 +8,5 @@ class OsarPasarAPI {
   static String bookingSummary = "$baseUrl/orders/store";
   static String category = "$baseUrl/categories";
   static String notificationList = "$baseUrl/notifications/list";
+  static String orderRequest = "$baseUrl/active-requests";
 }
