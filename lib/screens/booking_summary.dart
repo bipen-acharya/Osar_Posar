@@ -7,13 +7,11 @@ import 'package:osar_pasar/controller/item_controller.dart';
 import 'package:osar_pasar/controller/service_provider_controller.dart';
 import 'package:osar_pasar/models/item_model.dart';
 import 'package:osar_pasar/models/service_provider.dart';
-import 'package:osar_pasar/screens/notification_page.dart';
-import 'package:osar_pasar/screens/request.dart';
 import 'package:http/http.dart' as http;
+import 'package:osar_pasar/screens/request.dart';
 import 'package:osar_pasar/utils/apis.dart';
 import 'package:osar_pasar/utils/storage_helper.dart';
 import 'package:osar_pasar/widgets/custom_text_field.dart';
-import 'package:osar_pasar/widgets/home_card.dart';
 
 import '../utils/colors.dart';
 import 'home.dart';
@@ -173,7 +171,7 @@ class BookingSummary extends StatelessWidget {
               colorText: Colors.white,
             );
 
-            Get.to(() => HomePage());
+            Get.offAll(() => const RequestScreen());
           },
           child: const Text("Send Request"),
         ),

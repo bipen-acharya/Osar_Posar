@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:osar_pasar/controller/item_controller.dart';
 import 'package:osar_pasar/models/service_provider.dart';
 import 'package:osar_pasar/screens/address.dart';
+import 'package:osar_pasar/widgets/custom_snackbar.dart';
 
 import '../utils/colors.dart';
 
@@ -12,7 +13,7 @@ class ItemAddScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.find<ItemController>();
+    final c = Get.put(ItemController());
 
     var textTheme = Theme.of(Get.context!).textTheme;
     var theme = Theme.of(Get.context!);
@@ -134,18 +135,25 @@ class ItemAddScreen extends StatelessWidget {
         }
       }),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.only(bottom: 46, right: 35, left: 35),
+        margin: EdgeInsets.only(bottom: 46, right: 35, left: 35),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-            backgroundColor: const Color(0xff00183F),
+            backgroundColor: const Color(
+              0xff00183F,
+            ),
             minimumSize: const Size.fromHeight(50),
           ),
           onPressed: () {
-            Get.to(AddressPage(
-              serviceProvider: serviceProvider,
-            ));
+            if (c.selectedItems.isNotEmpty) {
+              Get.to(AddressPage(
+                serviceProvider: serviceProvider,
+              ));
+            } else {
+              CustomSnackBar.info(
+                  message: "Please add an item", title: "Items");
+            }
           },
           child: const Text(
             "Continue",

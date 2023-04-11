@@ -35,18 +35,19 @@ class MyDrawer extends StatelessWidget {
             ),
             child: Column(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    imageUrl: 'https://picsum.photos/100/100',
-                    errorWidget: (context, url, error) => Image.asset(
-                      ImagePath.on_board3,
-                      height: 40,
-                      width: 40,
-                      fit: BoxFit.contain,
+                CircleAvatar(
+                  radius: 45,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.fill,
+                      imageUrl: 'https://picsum.photos/100/100',
+                      errorWidget: (context, url, error) => Image.asset(
+                        ImagePath.on_board3,
+                        fit: BoxFit.contain,
+                      ),
+                      // height: 87,
                     ),
-                    // height: 87,
                   ),
                 ),
                 Padding(
@@ -120,11 +121,48 @@ class MyDrawer extends StatelessWidget {
                   icon: Icons.logout,
                   label: 'Logout',
                   onPressed: () async {
-                    _showMyDialog();
-                    final box = GetStorage();
-                    await box.write(StorageKey.ACCESS_TOKEN, null);
-                    await box.write(StorageKey.USER, null);
-                    Get.offAllNamed(Login.routeName);
+                    showDialog<void>(
+                      context: Get.context!,
+                      barrierDismissible: false, // user must tap button!
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: SingleChildScrollView(
+                            child: Column(
+                              children: const [
+                                Text('Are you sure you want to Logout?'),
+                              ],
+                            ),
+                          ),
+                          actions: [
+                            TextButton(
+                              child: const Text(
+                                'Logout',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              onPressed: () async {
+                                final box = GetStorage();
+                                await box.write(StorageKey.ACCESS_TOKEN, null);
+                                await box.write(StorageKey.USER, null);
+                                Get.offAllNamed(Login.routeName);
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                 ),
               ],
@@ -169,41 +207,42 @@ class DrawerItem extends StatelessWidget {
   }
 }
 
-Future<void> _showMyDialog() async {
-  return showDialog<void>(
-    context: Get.context!,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        content: SingleChildScrollView(
-          child: Column(
-            children: const <Widget>[
-              Text('Are you sure you want to Logout?'),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text(
-              'Logout',
-              style: TextStyle(
-                  color: Colors.red, fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            onPressed: () {
-              Get.offAll(Login());
-            },
-          ),
-          TextButton(
-            child: const Text(
-              'Cancel',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-            ),
-            onPressed: () {
-              Get.back();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+// Future<void> 
+// showMyDialog() async {
+//   return showDialog<void>(
+//     context: Get.context!,
+//     barrierDismissible: false, // user must tap button!
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         content: SingleChildScrollView(
+//           child: Column(
+//             children: const [
+//               Text('Are you sure you want to Logout?'),
+//             ],
+//           ),
+//         ),
+//         actions: [
+//           TextButton(
+//             child: const Text(
+//               'Logout',
+//               style: TextStyle(
+//                   color: Colors.red, fontSize: 16, fontWeight: FontWeight.w600),
+//             ),
+//             onPressed: () {
+//               Get.offAll(Login());
+//             },
+//           ),
+//           TextButton(
+//             child: const Text(
+//               'Cancel',
+//               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+//             ),
+//             onPressed: () {
+//               Get.back();
+//             },
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
