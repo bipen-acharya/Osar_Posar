@@ -50,16 +50,29 @@ class NotificationServiceprovider {
 }
 
 class Data {
+  int? serviceProviderId;
+  int? orderId;
+  String? serviceProviderName;
   String? note;
 
-  Data({this.note});
+  Data(
+      {this.serviceProviderId,
+      this.orderId,
+      this.serviceProviderName,
+      this.note});
 
   Data.fromJson(Map<String, dynamic> json) {
+    serviceProviderId = json['service_provider_id'];
+    orderId = json['order_id'];
+    serviceProviderName = json['service_provider_name'];
     note = json['note'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['service_provider_id'] = serviceProviderId;
+    data['order_id'] = orderId;
+    data['service_provider_name'] = serviceProviderName;
     data['note'] = note;
     return data;
   }

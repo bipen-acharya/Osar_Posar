@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:osar_pasar/controller/home_controller.dart';
+import 'package:osar_pasar/controller/notification_controller.dart';
 import 'package:osar_pasar/screens/active_booking.dart';
 import 'package:osar_pasar/screens/notification_page.dart';
 import 'package:osar_pasar/screens/request.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatelessWidget {
   final c = Get.put(HomeController());
 
   final coreController = Get.find<CoreController>();
+  final notificationCOntroller = Get.put(NotificationController());
   @override
   Widget build(BuildContext context) {
     var hour = DateTime.now().hour;
@@ -43,6 +45,7 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              notificationCOntroller.getAllNotifications();
               Get.to(NotificationPage(
                 notificationMessage: 'You received a new notification',
               ));
@@ -142,92 +145,17 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Material(
-                  //   borderRadius: BorderRadius.circular(10),
-                  //   color: const Color(0xff00183F),
-                  //   child: InkWell(
-                  //     borderRadius: BorderRadius.circular(10),
-                  //     onTap: () {},
-                  //     splashColor: Colors.grey.withOpacity(0.1),
-                  //     child: Container(
-                  //       height: 104,
-                  //       width: 163,
-                  //       child: Center(
-                  //         child: Wrap(
-                  //           alignment: WrapAlignment.center,
-                  //           crossAxisAlignment: WrapCrossAlignment.center,
-                  //           spacing: 10.0,
-                  //           children: [
-                  //             const Icon(
-                  //               Icons.history,
-                  //               color: Colors.white,
-                  //             ),
-                  //             Text(
-                  //               "Requests",
-                  //               style: textTheme.bodyMedium!.copyWith(
-                  //                   fontSize: 14,
-                  //                   color: AppColors.whiteTextColor),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   HomeCard(
                     text: "Requests",
                     iconData: Icons.history,
-                    onTap: (() => Get.to(() =>  RequestScreen())),
+                    onTap: (() => Get.to(() => RequestScreen())),
                     // onTap: () {},
                   ),
                   HomeCard(
                     text: "Active Booking",
                     iconData: FontAwesomeIcons.receipt,
-                    onTap: (() => Get.to(() => const ActiveBooking())),
+                    onTap: (() => Get.to(() =>  ActiveBookingScreen())),
                   ),
-                  // Material(
-                  //   borderRadius: BorderRadius.circular(10),
-                  //   color: const Color(0xff00183F),
-                  //   child: InkWell(
-                  //     borderRadius: BorderRadius.circular(10),
-                  //     onTap: () {},
-                  //     splashColor: Colors.grey.withOpacity(0.1),
-                  //     child: SizedBox(
-                  //       height: 104,
-                  //       width: 163,
-                  //       child: Center(
-                  //         child: Wrap(
-                  //           alignment: WrapAlignment.center,
-                  //           crossAxisAlignment: WrapCrossAlignment.center,
-                  //           spacing: 10.0,
-                  //           children: [
-                  //             const Icon(
-                  //               FontAwesomeIcons.receipt,
-                  //               color: Colors.white,
-                  //             ),
-                  //             Column(
-                  //               crossAxisAlignment: CrossAxisAlignment.start,
-                  //               children: [
-                  //                 Text(
-                  //                   "Active",
-                  //                   style: textTheme.bodyMedium!.copyWith(
-                  //                       fontSize: 14,
-                  //                       color: AppColors.whiteTextColor),
-                  //                 ),
-                  //                 Text(
-                  //                   "Bookings",
-                  //                   style: textTheme.bodyMedium!.copyWith(
-                  //                       fontSize: 14,
-                  //                       color: AppColors.whiteTextColor),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
               const SizedBox(

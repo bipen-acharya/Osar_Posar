@@ -21,7 +21,7 @@ class NotificationPage extends StatelessWidget {
         title: Text(
           'Notifications',
           style: textTheme.titleLarge!.copyWith(
-              fontSize: 18, color: Color.fromARGB(255, 255, 255, 255)),
+              fontSize: 18, color: const Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
       body: Obx(
@@ -37,15 +37,25 @@ class NotificationPage extends StatelessWidget {
                         c.notificationList[index];
                     return InkWell(
                       onTap: () {
-                        Get.to(ActiveBooking());
+                        Get.to(ActiveBookingScreen());
                       },
                       child: Card(
                         child: Padding(
                           padding: const EdgeInsets.all(12),
-                          child: Text(
-                            notification.data!.note! ?? "",
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 57, 57, 57)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                notification.data!.serviceProviderName ?? "",
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 57, 57, 57)),
+                              ),
+                              Text(
+                                notification.data!.note ?? "",
+                                style: const TextStyle(
+                                    color: Color.fromARGB(255, 57, 57, 57)),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -118,7 +128,7 @@ class NotificationsList extends StatelessWidget {
     },
   ];
 
-   NotificationsList({super.key});
+  NotificationsList({super.key});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

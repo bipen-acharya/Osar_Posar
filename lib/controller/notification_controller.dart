@@ -6,23 +6,22 @@ import 'package:osar_pasar/repo/notification_repo.dart';
 
 import '../models/notification.dart';
 
-class NotificationController extends GetxController{
-  
-  
+class NotificationController extends GetxController {
   RxList<NotificationServiceprovider> notificationList = RxList();
   RxBool loading = false.obs;
 
- @override
+  @override
   void onInit() {
     getAllNotifications();
     super.onInit();
   }
+
   getAllNotifications() async {
     loading.value = true;
     await NotificationRepo.getAllNotification(
       onSuccess: (notify) {
         loading.value = false;
-
+        notificationList.clear();
         log("controlling classmate  ");
         notificationList.addAll(notify);
       },
